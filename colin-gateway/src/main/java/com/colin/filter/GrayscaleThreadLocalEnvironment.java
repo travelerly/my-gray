@@ -9,7 +9,6 @@ public class GrayscaleThreadLocalEnvironment {
 
     /**
      * 设置当前线程对应的版本
-     *
      * @param currentEnvironmentVsersion
      */
     public static void setCurrentEnvironment(String currentEnvironmentVsersion) {
@@ -18,7 +17,6 @@ public class GrayscaleThreadLocalEnvironment {
 
     /**
      * 获取当前环境配置
-     *
      * @return
      */
     public static String getCurrentEnvironment() {

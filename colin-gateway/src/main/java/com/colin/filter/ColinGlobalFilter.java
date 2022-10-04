@@ -32,7 +32,7 @@ public class ColinGlobalFilter implements GlobalFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         // 1.获取到 ServerHttpRequest
         ServerHttpRequest request = exchange.getRequest();
-        /*ServerHttpResponse response = exchange.getResponse();*/
+
         // 2.判断是否是灰度用户 根据参数判断
         List<String> colinParameGrayscales = request.getHeaders().get("colinParameGrayscale");
         if (colinParameGrayscales != null && colinParameGrayscales.size() > 0) {
@@ -55,15 +55,16 @@ public class ColinGlobalFilter implements GlobalFilter, Ordered {
         }
         for (String userConfig : grayscaleUserConfig) {
             if (userConfig.equals(colinParameGrayscale)) {
-                // 设置当前用户灰度的环境
+                // 设置当前用户灰度的环境，信息保存到 ThreadLocal 中
                 GrayscaleThreadLocalEnvironment.setCurrentEnvironment(grayscaleVersion);
                 return;
             }
         }
-        // 设置当前环境为正式环境
+        // 设置当前环境为正式环境，信息保存到 ThreadLocal 中
         GrayscaleThreadLocalEnvironment.setCurrentEnvironment(formalVersion);
     }
 
+    // 设置加载优先级，-1：优先级最高
     @Override
     public int getOrder() {
         return -1;

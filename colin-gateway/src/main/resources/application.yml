@@ -20,7 +20,7 @@ spring:
             - StripPrefix=1
           # 匹配规则
           predicates:
-            - Path=/colin-demo/**
+            - Path=/colin-gateway/**
 
 colin:
   gateway:

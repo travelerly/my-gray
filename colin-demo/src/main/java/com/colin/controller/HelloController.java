@@ -3,6 +3,7 @@ package com.colin.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,11 +18,11 @@ public class HelloController {
     @Value("${server.port}")
     private String port;
 
-    @RequestMapping("/hello")
+    @GetMapping("/hello")
     public String hello(){
 
         // 稳定版本输出内容
-        /*return "hello gray controller，port = " + port;*/
+        /*return "hello controller，port = " + port;*/
 
         // 灰度版本输出内容
         return "hello gray controller，port = " + port;
