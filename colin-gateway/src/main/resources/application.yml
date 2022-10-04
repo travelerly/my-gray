@@ -1,0 +1,31 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: colin-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      discovery:
+        locator:
+          # 开启以服务 id 去注册中心上获取转发地址
+          enabled: true
+      routes:
+        - id: colin-demo
+          # 基于 lb 负载均衡形式转发
+          uri: lb://colin-demo
+          filters:
+            - StripPrefix=1
+          # 匹配规则
+          predicates:
+            - Path=/colin-demo/**
+
+colin:
+  gateway:
+    grayscaleUserConfig: colin,mark
+    formal:
+      version: 1.0
+    grayscale:
+      version: 2.0
