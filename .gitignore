@@ -20,4 +20,5 @@ buildNumber.properties
 
 **/.gitignore
 /.idea/
-my-gray.iml
+
+*iml
