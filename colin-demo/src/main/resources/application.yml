@@ -1,5 +1,5 @@
 server:
-  port: 8083
+  port: 8081
 spring:
   application:
     name: colin-demo
@@ -7,3 +7,6 @@ spring:
     nacos:
       discovery:
         server-addr: 127.0.0.1:8848
+        metadata:
+          version: 1.0 # 稳定版本 1.0，灰度版本 2.0
+
