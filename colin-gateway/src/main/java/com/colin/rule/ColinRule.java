@@ -46,6 +46,7 @@ public class ColinRule extends RoundRobinRule {
                 return null;
             }
             List<NacosServer> filterServers = new ArrayList<>();
+            // 获取当前用户的环境信息，即当前用户的版本号
             String currentEnvironmentVersion = GrayscaleThreadLocalEnvironment.getCurrentEnvironment();
 
             /**
@@ -93,6 +94,11 @@ public class ColinRule extends RoundRobinRule {
         return server;
     }
 
+    /**
+     * 负载均衡算法(轮询算法)，计算服务实例所在的下标
+     * @param modulo 备选服务实例集合的 size 大小
+     * @return 下标 index
+     */
     private int incrementAndGetModulo(int modulo) {
         for (; ; ) {
             int current = nextServerCyclicCounter.get();
